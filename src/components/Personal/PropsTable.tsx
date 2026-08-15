@@ -11,7 +11,7 @@ const PropsTable = ({ data }: PropsTableProps) => {
   return (
     <div className="overflow-hidden rounded-lg border border-gray-200 shadow-sm">
       <table className="w-full">
-        <thead className="">
+        <thead className="text-[var(--text-color)] bg-gray-200/10 border-b border-gray-200">
           <tr>
             <th className="px-4 py-3 text-left text-sm font-semibold ">Prop</th>
             <th className="px-4 py-3 text-left text-sm font-semibold ">Type</th>

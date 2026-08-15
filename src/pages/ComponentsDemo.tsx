@@ -10,6 +10,7 @@ interface ComponentDemoProps {
 
 const ComponentDemo = ({ children, code }: ComponentDemoProps) => {
   const [isCodeVisible, setIsCodeVisible] = useState(false);
+  console.log("code visibale: ", isCodeVisible)
 
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden shadow-sm bg-gray-200">
