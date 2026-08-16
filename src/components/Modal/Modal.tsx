@@ -98,10 +98,10 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <button
                 onClick={onClose}
                 className={cn(
-                  "px-4 py-2 rounded-md font-medium transition",
+                  "px-4 py-2 rounded-md font-medium transition cursor-pointer",
                   variant === "dark"
                     ? "border border-slate-600 hover:bg-slate-700"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    : "border border-gray-300 hover:bg-gray-100 hover:text-gray-900"
                 )}
               >
                 {closeText}
@@ -110,7 +110,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               <button
                 onClick={onDone}
                 className={cn(
-                  "px-4 py-2 rounded-md text-white font-medium transition",
+                  "px-4 py-2 rounded-md text-white font-medium transition cursor-pointer",
                   variant === "dark"
                     ? "bg-indigo-500 hover:bg-indigo-600"
                     : "bg-indigo-600 hover:bg-indigo-700"

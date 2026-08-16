@@ -1,15 +1,22 @@
 import { toggleTheme } from "@/features/ThemeSlice";
 import { Moon, Search, Sun } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { mode } = useSelector(
     (state: { theme: { mode: string } }) => state.theme
   );
   console.log("this is theme->", mode);
+
+  const pages = [
+    "Components",
+    "About",
+    "Templates"
+  ]
 
   return (
     <nav className="h-16 w-full flex items-center justify-between px-8">
@@ -31,15 +38,22 @@ const Navbar = () => {
         </div>
       </div>
 
-      <ul className="hidden md:flex items-center gap-6 text-gray-500">
-        <li
-          onClick={() => navigate("components")}
-          className="cursor-pointer hover:text-black"
-        >
-          Components
-        </li>
-        <li className="cursor-pointer hover:text-black">About</li>
-        <li className="cursor-pointer hover:text-black">Templates</li>
+      <ul className="hidden md:flex items-center gap-6 text-gray-400">
+        {
+          pages.map((path, i) => (
+            <li
+              key={i}
+              onClick={() => navigate(`${path.toLowerCase()}`)}
+              className={`${location.pathname.startsWith(`/${path.toLowerCase()}`) ? "text-blue-500 font-bold" : "text-gray-400"} cursor-pointer hover:text-gray-600 flex flex-col gap-1`}
+            >
+              {`${path}`}
+              {
+                location.pathname.startsWith(`/${path.toLowerCase()}`) && <hr className="border border-[2px] rounded-lg" />
+              }
+            </li>
+          ))
+        }
+
         {mode === "dark" && (
           <li
             className="cursor-pointer p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"

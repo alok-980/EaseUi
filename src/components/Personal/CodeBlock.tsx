@@ -17,7 +17,7 @@ const CodeBlock = ({ code, language = "tsx" }: CodeBlockProps) => {
 
   return (
     <div className="relative">
-      <div className="flex items-center justify-between bg-[var(--bg-main)] text-[var(--text-main)] px-4 py-2 rounded-t-md border border-gray-200">
+      <div className="flex items-center justify-between bg-[var(--bg-main)] text-[var(--text-main)] px-4 py-2 rounded-t-lg border border-gray-200">
         <span className="text-xs font-mono uppercase">{language}</span>
         <button
           onClick={copyToClipboard}

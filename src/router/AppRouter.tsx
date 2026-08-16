@@ -7,10 +7,15 @@ import CardPage from "@/pages/components/CardPage";
 import ModalPage from "@/pages/components/ModalPage";
 import InputPage from "@/pages/components/InputPage";
 import NavbarPage from "@/pages/components/NavbarPage";
+import CarouselPage from "@/pages/components/CarouselPage";
+import Tooltip from "@/pages/components/TooltipPage";
+import LayoutPage from "@/pages/components/LayoutPage";
+import AboutPage from "@/pages/AboutPage";
+import TemplatePage from "@/pages/TemplatePage";
 
 type Props = {};
 
-const AppRouter = ({}: Props) => {
+const AppRouter = ({ }: Props) => {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -44,8 +49,28 @@ const AppRouter = ({}: Props) => {
               path: "navbar",
               element: <NavbarPage />,
             },
+            {
+              path: "carousel",
+              element: <CarouselPage />
+            },
+            {
+              path: "tooltip",
+              element: <Tooltip />
+            },
+            {
+              path: "layout",
+              element: <LayoutPage />
+            }
           ],
         },
+        {
+          path: "about",
+          element: <AboutPage />
+        },
+        {
+          path: "templates",
+          element: <TemplatePage />
+        }
       ],
     },
   ]);
