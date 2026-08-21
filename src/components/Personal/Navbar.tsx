@@ -19,7 +19,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="h-16 w-full flex items-center justify-between px-8">
+    <nav className="sticky top-0 z-10 bg-[var(--bg-color)] h-16 w-full flex items-center justify-between px-8">
       <div className="flex items-center gap-10">
         <h1
           onClick={() => navigate("/")}
