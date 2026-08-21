@@ -1,4 +1,3 @@
-import React from 'react'
 import { Carousel } from '@/components/Carousel/index'
 import ComponentDemo from '../ComponentsDemo'
 import PropsTable from '@/components/Personal/PropsTable'

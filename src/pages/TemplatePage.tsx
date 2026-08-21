@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components'
 import gsap from 'gsap'
 import { useNavigate } from 'react-router'
-
-type Props = {}
 
 type LayoutKind = "landing" | "dashboard" | "pricing" | "auth" | "grid" | "article";
 
@@ -204,7 +202,7 @@ const TemplateFullPreview = ({ layout, accent }: { layout: LayoutKind; accent: s
   );
 };
 
-const TemplatePage = (props: Props) => {
+const TemplatePage = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("All");

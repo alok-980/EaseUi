@@ -8,7 +8,7 @@ import { entranceAnimations } from "@/libs/animations/entranceAnimation";
 import { hoverAnimations } from "@/libs/animations/hoverAnimation";
 
 interface TooltipProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "content">,
   VariantProps<typeof tooltipVariants> {
   asChild?: boolean;
   content: React.ReactNode;

@@ -4,7 +4,6 @@ import { cn } from "@/libs/utils";
 
 const inputVariants = cva(
   "w-full rounded-md focus:outline-none shadow-sm transition-all duration-150 bg-white placeholder:text-gray-400",
-  // w-full bg-transparent border-b border-gray-500 pb-2 pt-6 focus:outline-none transition-all
   {
     variants: {
       size: {
@@ -20,21 +19,21 @@ const inputVariants = cva(
         success:
           "border-green-400 focus:ring-2 focus:ring-green-400 focus:border-green-400",
       },
-      disabled: {
+      isDisabled: {
         true: "bg-gray-100 text-gray-400 cursor-not-allowed opacity-80",
       },
     },
     defaultVariants: {
       size: "md",
       tone: "default",
-      disabled: false,
+      isDisabled: false,
     },
   }
 );
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof inputVariants> {
+  VariantProps<typeof inputVariants> {
   label?: string;
   hint?: string;
   error?: string;
@@ -74,7 +73,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           id={inputId}
           ref={ref}
-          className={cn(inputVariants({ size, tone, disabled }), className)}
+          className={cn(
+            inputVariants({
+              size,
+              tone,
+              isDisabled: disabled,
+            }),
+            className
+          )}
           disabled={disabled}
           {...props}
         />

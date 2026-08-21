@@ -1,9 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Button } from '@/components'
 import gsap from 'gsap'
 import { useNavigate } from 'react-router';
-
-type Props = {}
 
 const materials = [
   { name: "React", note: "component runtime" },
@@ -38,7 +36,7 @@ const stats = [
   { value: "100%", label: "typed API surface" },
 ];
 
-const AboutPage = (props: Props) => {
+const AboutPage = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 

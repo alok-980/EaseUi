@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/Button";
 import { Tooltip } from "@/components/Tooltip";
 import { Layout } from "@/components/Layout";
 import { Carousel } from "@/components/Carousel";
-import { entranceAnimations } from "@/libs/animations/entranceAnimation";
 import gsap from "gsap";
 import { useNavigate } from "react-router";
 

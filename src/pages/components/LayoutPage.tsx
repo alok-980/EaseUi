@@ -1,4 +1,3 @@
-import React from 'react'
 import { Layout } from '@/components/Layout/index'
 import ComponentDemo from '../ComponentsDemo'
 import PropsTable from '@/components/Personal/PropsTable'

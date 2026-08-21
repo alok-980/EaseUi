@@ -1,12 +1,9 @@
-import React from 'react'
 import { Tooltip } from '../../components/Tooltip/index'
 import ComponentDemo from '../ComponentsDemo'
 import PropsTable from '@/components/Personal/PropsTable'
 import { Button } from '@/components'
 
-type Props = {}
-
-const TooltipPage = (props: Props) => {
+const TooltipPage = () => {
   const basicUsageCode = `
 import { Tooltip } from "@/components/Tooltip/Tooltip"
 
