@@ -2,7 +2,7 @@ import { Navbar } from "@/components/navbar";
 import ComponentDemo from "../ComponentsDemo";
 
 const NavbarPage = () => {
-  const usageCode = `import ComponentDemo from "../ComponentsDemo";
+  const usageCode = `import { Navbar } from "@devalokchauhan/dev-ease-ui-alok";
       <Navbar />
 
 

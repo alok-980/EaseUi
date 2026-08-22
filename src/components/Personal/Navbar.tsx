@@ -13,6 +13,7 @@ const Navbar = () => {
   console.log("this is theme->", mode);
 
   const pages = [
+    "Docs",
     "Components",
     "About",
     "Templates"

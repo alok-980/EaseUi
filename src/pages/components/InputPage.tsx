@@ -11,13 +11,19 @@ import {
 import { Search } from "lucide-react";
 
 const InputPage = () => {
-  const variantsCode = `<div className="flex flex-col gap-4">
+  const variantsCode = `
+  import { Input } from "@devalokchauhan/dev-ease-ui-alok"
+
+  <div className="flex flex-col gap-4">
     <Input placeholder="Default input" />
     <Input placeholder="Outline input" />
     <Input placeholder="Disabled input" disabled />
   </div>`;
 
-  const sizesCode = `<div className="flex flex-col gap-4">
+  const sizesCode = `
+  import { Input } from "@devalokchauhan/dev-ease-ui-alok"
+  
+  <div className="flex flex-col gap-4">
     <Input placeholder="Small input" className="py-1 text-sm" />
     <Input placeholder="Medium input" className="py-2 text-base" />
     <Input placeholder="Large input" className="py-3 text-lg" />

@@ -4,7 +4,7 @@ import PropsTable from '@/components/Personal/PropsTable'
 
 const CarouselPage = () => {
   const basicUsageCode = `
-import { Carousel } from "@/components/Carousel/Carousel"
+import { Carousel } from "@devalokchauhan/dev-ease-ui-alok"
 
 <Carousel
   variant="light"

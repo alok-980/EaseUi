@@ -5,7 +5,7 @@ import PropsTable from "@/components/Personal/PropsTable";
 
 const ButtonPage = () => {
   const basicUsageCode = `
-import { Button } from "@/components/Button/Button"
+import { Button } from "@devalokchauhan/dev-ease-ui-alok"
 
 <Button variant="primary" animation="scaleIn" hoverAnimation="jiggle" size="sm">Jiggle</Button>
 <Button variant="secondary" animation="slideUp" hoverAnimation="bounce" size="lg">Bounce</Button>

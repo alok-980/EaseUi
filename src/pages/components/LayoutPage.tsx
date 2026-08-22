@@ -4,7 +4,7 @@ import PropsTable from '@/components/Personal/PropsTable'
 
 const LayoutPage = () => {
   const basicUsageCode = `
-import { Layout } from "@/components/Layout/Layout"
+import { Layout } from "@devalokchauhan/dev-ease-ui-alok"
 
 <Layout cols={3} gap="default" animation="fadeIn" stagger>
   <div className="bg-indigo-100 rounded-md p-6 text-center">1</div>

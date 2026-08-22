@@ -12,6 +12,7 @@ import LayoutPage from "@/pages/components/LayoutPage";
 import AboutPage from "@/pages/AboutPage";
 import TemplatePage from "@/pages/TemplatePage";
 import TooltipPage from "@/pages/components/TooltipPage";
+import DocsPage from "@/pages/DocsPage";
 
 type Props = {};
 
@@ -24,6 +25,10 @@ const AppRouter = ({ }: Props) => {
         {
           index: true,
           element: <HomePage />,
+        },
+        {
+          path: 'docs',
+          element: <DocsPage />
         },
         {
           path: "components",

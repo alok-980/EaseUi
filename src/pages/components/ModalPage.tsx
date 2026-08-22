@@ -9,8 +9,11 @@ const ModalPage = () => {
   const [darkModal, setDarkModal] = useState(false);
   const [outlineModal, setOutlineModal] = useState(false);
 
-  const usageCode = `import { Button } from "@/components/Button/Button";
-import { Modal } from "@/components/Modal/Modal";
+  const usageCode = `
+  import { useState } from 'react';
+
+  import { Button } from "@devalokchauhan/dev-ease-ui-alok";
+import { Modal } from "@devalokchauhan/dev-ease-ui-alok";
 
 const [lightModal, setLightModal] = useState(false);
 const [darkModal, setDarkModal] = useState(false);

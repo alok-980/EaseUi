@@ -67,6 +67,11 @@ const templates: TemplateItem[] = [
 
 const categories = ["All", ...Array.from(new Set(templates.map((t) => t.category)))];
 
+const categoryCounts: Record<string, number> = categories.reduce((acc, cat) => {
+  acc[cat] = cat === "All" ? templates.length : templates.filter((t) => t.category === cat).length;
+  return acc;
+}, {} as Record<string, number>);
+
 /** Small card-size mockup shown in the grid */
 const TemplateMockPreview = ({ layout, accent }: { layout: LayoutKind; accent: string }) => {
   const blockCountByLayout: Record<LayoutKind, number> = {
@@ -80,7 +85,7 @@ const TemplateMockPreview = ({ layout, accent }: { layout: LayoutKind; accent: s
   const blocks = blockCountByLayout[layout];
 
   return (
-    <div className="w-full h-40 rounded-t-lg bg-gray-50 border-b border-gray-200 p-3 flex flex-col gap-2 overflow-hidden transition-transform duration-300 group-hover:scale-[1.03]">
+    <div className="w-full h-40 bg-gray-50 p-3 flex flex-col gap-2 overflow-hidden transition-transform duration-500 group-hover:scale-105">
       <div className={`h-3 w-1/3 rounded ${accent} opacity-80`} />
       <div className="h-2 w-1/2 rounded bg-gray-200" />
       <div className="flex-1 grid gap-2" style={{ gridTemplateColumns: `repeat(${blocks}, 1fr)` }}>
@@ -184,7 +189,6 @@ const TemplateFullPreview = ({ layout, accent }: { layout: LayoutKind; accent: s
     );
   }
 
-  // article
   return (
     <div className="flex gap-4">
       <div className="w-1/4 space-y-2">
@@ -204,6 +208,7 @@ const TemplateFullPreview = ({ layout, accent }: { layout: LayoutKind; accent: s
 
 const TemplatePage = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("All");
   const [previewTemplate, setPreviewTemplate] = useState<TemplateItem | null>(null);
@@ -218,6 +223,17 @@ const TemplatePage = () => {
       { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 }
     );
   }, []);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const cards = el.querySelectorAll(".template-card");
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", stagger: 0.06 }
+    );
+  }, [activeCategory]);
 
   const filteredTemplates =
     activeCategory === "All"
@@ -251,34 +267,57 @@ const TemplatePage = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer ${activeCategory === cat
-                  ? "bg-[var(--primary-color)] text-white border-[var(--primary-color)]"
-                  : "bg-white text-gray-600 border-gray-200 hover:border-[var(--primary-color)] hover:text-[var(--primary-color)]"
+              className={`flex items-center gap-1.5 text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer ${activeCategory === cat
+                ? "bg-[var(--primary-color)] text-white border-[var(--primary-color)]"
+                : "bg-white text-gray-600 border-gray-200 hover:border-[var(--primary-color)] hover:text-[var(--primary-color)]"
                 }`}
             >
               {cat}
+              <span
+                className={`text-xs ${activeCategory === cat ? "text-indigo-100" : "text-gray-400"
+                  }`}
+              >
+                {categoryCounts[cat]}
+              </span>
             </button>
           ))}
         </div>
       </div>
 
       {/* ---------- TEMPLATE GRID ---------- */}
-      <section className="space-y-6">
+      <section ref={gridRef} className="space-y-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {filteredTemplates.map((template) => (
             <div
               key={template.slug}
-              className="group rounded-lg border border-gray-200 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:shadow-gray-200/60 hover:-translate-y-1 hover:border-[var(--primary-color)]"
+              className="template-card group rounded-lg border border-gray-200 overflow-hidden bg-white transition-all duration-300 hover:shadow-lg hover:shadow-gray-200/60 hover:-translate-y-1 hover:border-[var(--primary-color)]"
             >
-              <button
-                type="button"
-                onClick={() => setPreviewTemplate(template)}
-                className="w-full text-left cursor-pointer"
-              >
+              {/* Preview image with hover overlay */}
+              <div className="relative overflow-hidden border-b border-gray-200">
                 <TemplateMockPreview layout={template.layout} accent={template.accent} />
-              </button>
 
-              <div className="p-4 space-y-3">
+                <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/50 transition-colors duration-300 flex items-center justify-center gap-2">
+                  <div className="opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="bg-white/95 border-white text-gray-800 hover:bg-white"
+                      onClick={() => setPreviewTemplate(template)}
+                    >
+                      Preview
+                    </Button>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => handleUseTemplate(template)}
+                    >
+                      Use Template
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 space-y-1.5">
                 <div className="flex items-center justify-between">
                   <h3 className="font-semibold text-gray-900">{template.name}</h3>
                   <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
@@ -288,22 +327,6 @@ const TemplatePage = () => {
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {template.description}
                 </p>
-                <div className="flex gap-2 pt-1">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setPreviewTemplate(template)}
-                  >
-                    Preview
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => handleUseTemplate(template)}
-                  >
-                    Use Template
-                  </Button>
-                </div>
               </div>
             </div>
           ))}
@@ -326,18 +349,27 @@ const TemplatePage = () => {
             className="bg-white rounded-xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <div>
-                <h3 className="font-semibold text-gray-900">{previewTemplate.name}</h3>
-                <span className="text-xs text-gray-500">{previewTemplate.category}</span>
-              </div>
+            <div className="flex items-center gap-1.5 px-4 py-3 border-b border-gray-100 bg-gray-50">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-300" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-300" />
+              <span className="w-2.5 h-2.5 rounded-full bg-green-300" />
+              <span className="ml-3 text-xs font-mono text-gray-400">
+                {previewTemplate.slug}.tsx
+              </span>
               <button
                 onClick={() => setPreviewTemplate(null)}
-                className="text-gray-400 hover:text-gray-700 text-xl leading-none cursor-pointer"
+                className="ml-auto text-gray-400 hover:text-gray-700 text-lg leading-none cursor-pointer"
                 aria-label="Close preview"
               >
                 ×
               </button>
+            </div>
+
+            <div className="flex items-center justify-between px-6 pt-5">
+              <div>
+                <h3 className="font-semibold text-gray-900 text-lg">{previewTemplate.name}</h3>
+                <span className="text-xs text-gray-500">{previewTemplate.category}</span>
+              </div>
             </div>
 
             <div className="p-6 space-y-6">

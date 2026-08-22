@@ -4,7 +4,7 @@ import PropsTable from "@/components/Personal/PropsTable";
 import { Button } from "@/components";
 
 const CardPage = () => {
-  const animatedCard = `import { Card } from "@/components/Card/Card";
+  const animatedCard = `import { Card } from "@devalokchauhan/dev-ease-ui-alok";
 
 <Card
   title="Modern Animated Card"

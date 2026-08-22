@@ -5,7 +5,7 @@ import { Button } from '@/components'
 
 const TooltipPage = () => {
   const basicUsageCode = `
-import { Tooltip } from "@/components/Tooltip/Tooltip"
+import { Tooltip } from "@devalokchauhan/dev-ease-ui-alok"
 
 <Tooltip content="Primary tooltip" variant="primary" side="top" animation="fadeIn">
   <Button variant="primary" size="sm">Hover me</Button>
