@@ -1,6 +1,6 @@
 {
   "name": "@devalokchauhan/dev-ease-ui-alok",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A modern React UI library by Devendra Dhote",
   "author": "Devendra Dhote",
   "license": "MIT",
@@ -16,7 +16,7 @@
       "import": "./dist/easeui.es.js",
       "require": "./dist/easeui.umd.js"
     },
-    "./style.css": "./dist/index.css"
+    "./style.css": "./dist/dev-ease-ui-alok.css"
   },
   "scripts": {
     "dev": "vite",
