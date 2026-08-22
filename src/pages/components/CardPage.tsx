@@ -26,7 +26,7 @@ const CardPage = () => {
   }
 />`;
 
-  const darkCard = `import { Card } from "@/components/Card/Card";
+  const darkCard = `import { Card } from "@devalokchauhan/dev-ease-ui-alok";
 
 <Card
   title="Modern Animated Card"
@@ -48,7 +48,7 @@ const CardPage = () => {
   }
 />`;
 
-  const outLineCard = `import { Card } from "@/components/Card/Card";
+  const outLineCard = `import { Card } from "@devalokchauhan/dev-ease-ui-alok";
 
 <Card
   title="Modern Animated Card"
